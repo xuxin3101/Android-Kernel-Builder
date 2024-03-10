@@ -58,7 +58,7 @@ jobs:
       - name: "🌟 Clone kernel source => (${{ env.kernelRepo }})"
         working-directory: ./${{ env.kernelDir }}
         run: |
-          git clone --recursive $vendorRepo $kernelName --depth ==1
+          git clone --recursive $vendorRepo $kernelName --depth =1
           cd $kernelName/kernel/msm-5.4
           git clone --recursive --branch $kernelBranch $kernelRepo  --depth=1
           mv techpack techpack_backup
