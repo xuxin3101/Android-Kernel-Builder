@@ -43,7 +43,7 @@ jobs:
       kernelDevice: ${{ matrix.repos.kernelSource.device }}
       vendorRepo: ${{ matrix.repos.kernelSource.vendor_repo }}
 
-      DEFCONFIG_NAME: ${{ matrix.repos.kernelSource.device }}_defconfig
+      DEFCONFIG_NAME: vendor/lahaina-qgki_defconfig
 
       withKernelSU: ${{ matrix.repos.withKernelSU }}
     steps:
