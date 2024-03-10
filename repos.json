@@ -1,11 +1,12 @@
 [  {
     "kernelSource": {
       "name": "miku-KernelSU",
-      "repo": "https://github.com/PhamtomK12/kernel_xiaomi_odin",
-      "branch": "TDA",
+      "kernel_repo": "https://github.com/realme-kernel-opensource/realme_gt-AndroidT-kernel-source.git",
+      "vendor_repo": "https://github.com/realme-kernel-opensource/realme_gt-AndroidT-vendor-source",
+      "branch": "master",
       "device": "odin"
     },
-    "withKernelSU": true,
+    "withKernelSU": false,
     "toolchains": [
       {
         "repo": "https://android.googlesource.com/platform/prebuilts/gas/linux-x86",
