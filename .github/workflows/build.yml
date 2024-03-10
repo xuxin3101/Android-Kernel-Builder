@@ -41,6 +41,7 @@ jobs:
       kernelRepo: ${{ matrix.repos.kernelSource.repo }}
       kernelBranch: ${{ matrix.repos.kernelSource.branch }}
       kernelDevice: ${{ matrix.repos.kernelSource.device }}
+      vendorRepo: ${{ matrix.repos.kernelSource.vendor_repo }}
 
       DEFCONFIG_NAME: ${{ matrix.repos.kernelSource.device }}_defconfig
 
@@ -57,7 +58,16 @@ jobs:
       - name: "🌟 Clone kernel source => (${{ env.kernelRepo }})"
         working-directory: ./${{ env.kernelDir }}
         run: |
-          git clone --recursive --branch $kernelBranch $kernelRepo $kernelName --depth=1
+          git clone --recursive $vendorRepo $kernelName --depth ==1
+          cd $kernelName/kernel/msm-5.4
+          git clone --recursive --branch $kernelBranch $kernelRepo  --depth=1
+          mv techpack techpack_backup
+          mv realme_gt-AndroidT-kernel-source/* ./
+          rm -rf realme_gt-AndroidT-kernel-source
+          mv techpack_backup/* ./techpack/
+          rm -rf techpack_backup/
+          
+          
 
       - name: "💫 Get toolchains"
         working-directory: ./${{ env.kernelDir }}
@@ -140,7 +150,7 @@ jobs:
           cat ./arch/${{ env.ARCH }}/configs/${{ env.DEFCONFIG_NAME }}
 
       - name: "👍 Make defconfig"
-        working-directory: ./${{ env.kernelDir }}/${{ env.kernelName }}
+        working-directory: ./${{ env.kernelDir }}/${{ env.kernelName }}/kernel/msm-5.4
         env:
           args: ${{ steps.generate-args.outputs.args }}
         run: |
@@ -148,7 +158,7 @@ jobs:
           make ${{ env.args }} ${{ env.DEFCONFIG_NAME }}
 
       - name: "🎶 Build kernel"
-        working-directory: ./${{ env.kernelDir }}/${{ env.kernelName }}
+        working-directory: ./${{ env.kernelDir }}/${{ env.kernelName }}/kernel/msm-5.4
         env:
           args: ${{ steps.generate-args.outputs.args }}
         run: |
