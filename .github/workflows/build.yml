@@ -38,7 +38,7 @@ jobs:
       kernelDir: ${{ matrix.repos.kernelSource.name }}_${{ matrix.repos.kernelSource.device }}
 
       kernelName: ${{ matrix.repos.kernelSource.name }}
-      kernelRepo: ${{ matrix.repos.kernelSource.repo }}
+      kernelRepo: ${{ matrix.repos.kernelSource.kernel_repo }}
       kernelBranch: ${{ matrix.repos.kernelSource.branch }}
       kernelDevice: ${{ matrix.repos.kernelSource.device }}
       vendorRepo: ${{ matrix.repos.kernelSource.vendor_repo }}
